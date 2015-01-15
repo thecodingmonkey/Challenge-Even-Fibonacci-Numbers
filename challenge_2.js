@@ -4,6 +4,7 @@ exports.sumOfEvenFibonacciNumbers = function(n){
   var fibonacciNumbers = {};
   var i = 1, j = 1;
 
+  // create the dictionary
   while (j < 1000000000) {
     var k = i + j;
     fibonacciNumbers[k] = true;
@@ -11,7 +12,8 @@ exports.sumOfEvenFibonacciNumbers = function(n){
     j = k;
   }
 
-  for(i=2; i <= n; i++, i++) {
+  // iterate through all possible numbers and check
+  for(i=2; i <= n; i+= 2) {
       if (fibonacciNumbers[i] === true) {
         sum = sum + i;
       }
