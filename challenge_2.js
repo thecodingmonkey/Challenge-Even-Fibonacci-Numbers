@@ -1,26 +1,23 @@
 exports.sumOfEvenFibonacciNumbers = function(n){
   var sum = 0;
   // do your work here
-  var a= 1, b = 1; // first values of sequence
+  var fibonacciNumbers = {};
+  var i = 1, j = 1;
 
-  while (true) {  // no terminating condition, we terminate by returning
-                  // in the if statement below
-
-    var nextVal = a + b;  // calculate next value in sequence
-
-    if (nextVal > n) { // we are done if we pass n
-      return sum;
-    }
-
-    // check is nextVal is even, add to sum if it is
-    if ((nextVal % 2) === 0) {
-      sum = sum + nextVal;
-    }
-
-    // shift current values to [b, nextVal] from [a, b]
-    a = b;
-    b = nextVal;
+  while (j < 1000000000) {
+    var k = i + j;
+    fibonacciNumbers[k] = true;
+    i = j;
+    j = k;
   }
+
+  for(i=2; i <= n; i++, i++) {
+      if (fibonacciNumbers[i] === true) {
+        sum = sum + i;
+      }
+
+  }
+
 
   return sum;  // we never reach here
 };
