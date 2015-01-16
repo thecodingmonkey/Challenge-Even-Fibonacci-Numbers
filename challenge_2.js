@@ -5,26 +5,37 @@ exports.sumOfEvenFibonacciNumbers = function(n){
   var makeFibonacci = function (currentValue, idx, arr) {
 //    console.log(currentValue, idx, arr);
     
-    if (idx == 0) {
-      return 0;
-    } else if (idx < 3) {
-      arr[idx] = 1;
+    if (idx < 2) {
+//      arr[idx] = 1;
       return 1;
     } else {
-      arr[idx] = arr[idx-1] + arr[idx-2];
+//      arr[idx] = arr[idx-1] + arr[idx-2];
       return arr[idx-1] + arr[idx-2];
     }
   };
 
+//  var fibNums = Array.apply(null, new Array(100)).map(Number.prototype.valueOf,1);
+//  console.log('fib',fibNums);
+
 //
-  var seq = [1,2,3,4,5,6,7,8,9,10,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-  1,1,1,1,1,1,1,1,1];  //.fill(0, 0, 10);
+  var seq = Array.apply(null, new Array(50)).map(Number.prototype.valueOf,1);  //.fill(0, 0, 10);
 //  seq.fill(0, 0, 10);
 
 //  var seq = new Array(50);
 //  console.log(seq);
-  seq = seq.map(makeFibonacci);
-//  console.log(seq);
+  seq = seq.map(function (currentValue, idx, arr) {
+//    console.log(currentValue, idx, arr.toString());
+    
+    if (idx < 2) {
+      
+      return arr[idx] = 1;
+    } else {
+      
+      return arr[idx] = arr[idx-1] + arr[idx-2];
+    }
+  });
+
+  console.log("result: ",seq );
 
 
 
