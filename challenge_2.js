@@ -1,26 +1,45 @@
 exports.sumOfEvenFibonacciNumbers = function(n){
   var sum = 0;
   // do your work here
-  var a= 1, b = 1; // first values of sequence
 
-  while (true) {  // no terminating condition, we terminate by returning
-                  // in the if statement below
-
-    var nextVal = a + b;  // calculate next value in sequence
-
-    if (nextVal > n) { // we are done if we pass n
-      return sum;
+  var makeFibonacci = function (currentValue, idx, arr) {
+//    console.log(currentValue, idx, arr);
+    
+    if (idx == 0) {
+      return 0;
+    } else if (idx < 3) {
+      arr[idx] = 1;
+      return 1;
+    } else {
+      arr[idx] = arr[idx-1] + arr[idx-2];
+      return arr[idx-1] + arr[idx-2];
     }
+  };
 
-    // check is nextVal is even, add to sum if it is
-    if ((nextVal % 2) === 0) {
-      sum = sum + nextVal;
+//
+  var seq = [1,2,3,4,5,6,7,8,9,10,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+  1,1,1,1,1,1,1,1,1];  //.fill(0, 0, 10);
+//  seq.fill(0, 0, 10);
+
+//  var seq = new Array(50);
+//  console.log(seq);
+  seq = seq.map(makeFibonacci);
+//  console.log(seq);
+
+
+
+  function reduceFibonacci(prev, cur) {
+    if ((cur % 2) === 0 && cur < n) {
+//      console.log (prev, cur);
+      return prev + cur;
+    } else {
+//      console.log('X', prev, cur);
+      return prev;
     }
-
-    // shift current values to [b, nextVal] from [a, b]
-    a = b;
-    b = nextVal;
   }
 
-  return sum;  // we never reach here
+//  console.log(seq.reduce(reduceFibonacci, 0));
+  return seq.reduce(reduceFibonacci, 0);
+
+//  return sum;  // we never reach here
 };
